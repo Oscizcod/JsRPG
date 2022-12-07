@@ -91,6 +91,12 @@ const locations = [
         "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
         "button functions": [restart, restart, restart],
         text: "You die."
+    },
+    {
+        name: "win",
+        "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
+        "button functions": [restart, restart, restart],
+        text: "You defeat the dragon. YOU WIN THE GAME!"
     }
 ];
 
@@ -101,6 +107,7 @@ button3.onclick = fightDragon;
 
 // define functions
 function update(location) {
+    monsterStats.style.display = "none";
     button1.innerText = location["button text"][0];
     button2.innerText = location["button text"][1];
     button3.innerText = location["button text"][2];
@@ -206,7 +213,7 @@ function attack() {
     if (health <= 0) {
         lose();
     } else if (monsterHealth <= 0) {
-        defeatMonster();
+        fighting === 2 ? winGame() : defeatMonster();
     }
 }
 
@@ -215,7 +222,7 @@ function dodge() {
 }
 
 function lose() {
-
+    update(locations[5]);
 }
 
 function defeatMonster() {
@@ -227,5 +234,16 @@ function defeatMonster() {
 }
 
 function restart() {
-    
+    let xp = 0;
+    let health = 100;
+    let gold = 50;
+    let currentWeapon = 0;
+    let fighting;
+    let monsterHealth;
+    let inventory = ["stick"];
+    goTown();
+}
+
+function winGame() {
+    update(locations[6]);
 }
