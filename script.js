@@ -267,7 +267,7 @@ function winGame() {
 }
 
 function getMonsterAttackValue(monsterLevel) {
-    let hit = (level * 5) - (Math.floor(Math.random() * xp));
+    let hit = (monsterLevel * 5) - (Math.floor(Math.random() * xp));
     console.log(hit);
     return hit;
 }
@@ -291,7 +291,7 @@ function pickEight() {
 function pick(guess) {
     let numbers = [];
     while (numbers.length < 10) {
-        numbers.push(Math.floor(Math.random * 11));
+        numbers.push(Math.floor(Math.random() * 11));
     }
 
     text.innerText = "You picked " + guess + ". Here are the random numbers:\n";
@@ -301,11 +301,11 @@ function pick(guess) {
     }
 
     if (numbers.indexOf(guess) != -1) {
-        text.innerText = "Right! You win 20 gold!";
+        text.innerText += "Right! You win 20 gold!";
         gold += 20;
         goldText.innerText = gold;
     } else {
-        text.innerText = "Wrong! You lose 10 health!";
+        text.innerText += "Wrong! You lose 10 health!";
         health -= 10;
         healthText.innerText = health;
     
